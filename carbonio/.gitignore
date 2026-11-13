@@ -1,4 +1,5 @@
 .env
+.upstream/
 *.log
 data/
 secrets/
