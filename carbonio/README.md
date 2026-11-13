@@ -4,7 +4,7 @@ This directory tracks an upstream-based Docker Compose example for **development
 
 ## What this is
 
-The Compose definition is adapted from Zextras' `carbonio-dockerization-tools` project. The upstream project provides a multi-container Carbonio CE stack and supporting files. The image references currently point at the Zextras development registry; access requires the appropriate Zextras VPN/registry access and credentials.
+The Compose definition is adapted from Zextras' `carbonio-dockerization-tools` project (AGPL-3.0; see [COPYING](COPYING)). The upstream project provides a multi-container Carbonio CE stack and supporting files. The image references currently point at the Zextras development registry; access requires the appropriate Zextras VPN/registry access and credentials.
 
 Official references:
 - Dockerization tooling: https://github.com/zextras/carbonio-dockerization-tools
