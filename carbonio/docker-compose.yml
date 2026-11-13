@@ -1,0 +1,9 @@
+services:
+  # This is a placeholder service to document the deployment boundary.
+  # Carbonio components should be deployed using the official Carbonio
+  # installation method for your supported OS and release.
+  carbonio-placeholder:
+    image: alpine:3.20
+    container_name: carbonio-placeholder
+    command: ["sh", "-c", "echo 'Replace this scaffold with the official Carbonio deployment'; sleep infinity"]
+    restart: unless-stopped
