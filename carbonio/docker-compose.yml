@@ -27,9 +27,9 @@ services:
       - "5005:5005"
     environment:
       - LDAP_URL=ldap://carbonio-openldap:1389
-      - LDAP_ROOT_PASSWORD=qh6hWZvc
-      - LDAP_ADMIN_PASSWORD=password
-      - MARIADB_ROOT_PASSWORD=password
+      - "LDAP_ROOT_PASSWORD=${LDAP_ROOT_PASSWORD:?required_in_dotenv}"
+      - "LDAP_ADMIN_PASSWORD=${LDAP_ADMIN_PASSWORD:?required_in_dotenv}"
+      - "MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD:?required_in_dotenv}"
       - MARIADB_URL=carbonio-mariadb
       - MARIADB_PORT=3306
       - CARBONIO_FILES_SERVICE_URL=http://carbonio-files:10000
@@ -97,8 +97,8 @@ services:
     environment:
       - LDAP_HOST=carbonio-openldap
       - LDAP_PORT=1389
-      - LDAP_ROOT_PASSWORD=qh6hWZvc
-      - LDAP_ADMIN_PASSWORD=password
+      - "LDAP_ROOT_PASSWORD=${LDAP_ROOT_PASSWORD:?required_in_dotenv}"
+      - "LDAP_ADMIN_PASSWORD=${LDAP_ADMIN_PASSWORD:?required_in_dotenv}"
     healthcheck:
       interval: 60s
       retries: 10
@@ -187,7 +187,7 @@ services:
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin
+      - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?required_in_dotenv}"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./postgres/init_files.sql:/docker-entrypoint-initdb.d/init_files.sql
@@ -361,9 +361,9 @@ services:
         CARBONIO_PROXY_IMAGE: ${CARBONIO_PROXY_IMAGE:-registry.dev.zextras.com/dev/carbonio-proxy:${CARBONIO_GLOBAL_IMAGES_TAG:-main}}
     environment:
       - LDAP_URL=ldap://carbonio-openldap:1389
-      - LDAP_ROOT_PASSWORD=qh6hWZvc
-      - LDAP_ADMIN_PASSWORD=password
-      - MARIADB_ROOT_PASSWORD=password
+      - "LDAP_ROOT_PASSWORD=${LDAP_ROOT_PASSWORD:?required_in_dotenv}"
+      - "LDAP_ADMIN_PASSWORD=${LDAP_ADMIN_PASSWORD:?required_in_dotenv}"
+      - "MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD:?required_in_dotenv}"
       - MARIADB_URL=carbonio-mariadb
       - MARIADB_PORT=3306
       - CARBONIO_CATALOG_HOST=carbonio-catalog:10000
@@ -457,10 +457,10 @@ services:
       # Mongoose doesn't read from consul
       - CARBONIO_POSTGRES_DB_NAME=carbonio-message-dispatcher-db
       - CARBONIO_POSTGRES_DB_USERNAME=admin
-      - CARBONIO_POSTGRES_DB_PASSWORD=admin
+      - "CARBONIO_POSTGRES_DB_PASSWORD=${CARBONIO_POSTGRES_DB_PASSWORD:?required_in_dotenv}"
       # GraphQL API credentials
       - CARBONIO_GRAPHQL_API_USERNAME=admin
-      - CARBONIO_GRAPHQL_API_PASSWORD=admin-password
+      - "CARBONIO_GRAPHQL_API_PASSWORD=${CARBONIO_GRAPHQL_API_PASSWORD:?required_in_dotenv}"
       # Auth service
       - CARBONIO_MESSAGE_DISPATCHER_AUTH_HOST=127.0.0.1
       - CARBONIO_MESSAGE_DISPATCHER_AUTH_PORT=10002
@@ -514,13 +514,13 @@ services:
       - EVENT_DISPATCHER_HOST=carbonio-message-broker
       - EVENT_DISPATCHER_PORT=10000
       - EVENT_DISPATCHER_USER_USERNAME=guest
-      - EVENT_DISPATCHER_USER_PASSWORD=guest
+      - "EVENT_DISPATCHER_USER_PASSWORD=${EVENT_DISPATCHER_USER_PASSWORD:?required_in_dotenv}"
       - CONSUL_HOST=consul
       - CONSUL_PORT=8500
       - XMPP_SERVER_HOST=carbonio-message-dispatcher
       - XMPP_SERVER_HTTP_PORT=10000
       - XMPP_SERVER_USERNAME=admin
-      - XMPP_SERVER_PASSWORD=admin-password
+      - "XMPP_SERVER_PASSWORD=${XMPP_SERVER_PASSWORD:?required_in_dotenv}"
       - MESSAGE_DISPATCHER_DATABASE_HOST=carbonio-postgres
       - MESSAGE_DISPATCHER_DATABASE_PORT=5432
       - USER_MANAGEMENT_HOST=carbonio-user-management
@@ -529,7 +529,7 @@ services:
       - PREVIEWER_PORT=10000
       - VIDEO_SERVER_HOST=carbonio-videoserver
       - VIDEO_SERVER_PORT=8088
-      - VIDEO_SERVER_TOKEN=api-secret
+      - "VIDEO_SERVER_TOKEN=${VIDEO_SERVER_TOKEN:?required_in_dotenv}"
       - MAILBOX_NSLOOKUP_HOST=carbonio-mailbox
       - MAILBOX_NSLOOKUP_PORT=7072
       - STORAGES_HOST=carbonio-storages
