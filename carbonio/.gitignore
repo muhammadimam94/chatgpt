@@ -1,5 +1,12 @@
 .env
 .upstream/
+consul-service-registrator/
+provisioning/
+consul/
+postgres/
+carbonio-docs-editor/
+composed-ui/
+ssl/
 *.log
 data/
 secrets/
